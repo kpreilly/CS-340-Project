@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>CS 340 Database Project - Weapon Table </title>
+ </head>
+ <body>
+      <!-- Navigation Bar-->
+    <ul class="navBar">
+            <li class="home"><a href="index.html">COD Database</a></li>
+            <li class="navEle"><a href="map.html">Maps</a></li>
+            <li class="navEle"><a href="perk.html">Perks</a></li>
+            <li class="navEle"><a href="weapon.html">Weapons</a></li>
+        </ul>
+
+        <!-- Display Perk Entities and attributes -->
+    <table id="perkTable">
+            <tr>
+                <th>Name</th>
+                <th>Duration</th>
+                <th>Effect</th>
+            </tr>
+    
+            <!-- Pending on deciding to use handlebars -->
+            {{#if results}}
+            {{#each results}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.duration}}</td>
+                <td>{{this.effect}}</td>
+            </tr>
+        </table>
+  
+  <!-- Insert Javascript file 
+  <script src="yourscript.js"></script>
+  -->
+ </body>
+</html>
