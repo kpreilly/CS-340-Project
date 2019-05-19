@@ -1,20 +1,20 @@
 var express = require('express');
 var app = express();
-app.use(express.static(path.join(__dirname,'public')));
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
+app.use(express.static(path.join(__dirname,'public')));
 
-var port = 600001;
+var port = 60001;
 
 // mysql stuff
 var mysql = require('mysql');
-var connectionLimit = require('./dbcon').connectionLimit,
-    host = require('./dbcon').host,
-    password = require('./dbcon').password,
-    user = require('./dbcon').user,
-    db = require('./dbcon').db;
+// var connectionLimit = require('./dbcon').connectionLimit,
+//     host = require('./dbcon').host,
+//     password = require('./dbcon').password,
+//     user = require('./dbcon').user,
+//     db = require('./dbcon').db;
 
 // var pool = mysql.createPool({
 //     connectionLimit: connectionLimit,
