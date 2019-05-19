@@ -1,18 +1,37 @@
 var express = require('express');
 var app = express();
+app.use(express.static(path.join(__dirname,'public')));
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
 
+var port = 600001;
+
+// mysql stuff
+var mysql = require('mysql');
+var connectionLimit = require('./dbcon').connectionLimit,
+    host = require('./dbcon').host,
+    password = require('./dbcon').password,
+    user = require('./dbcon').user,
+    db = require('./dbcon').db;
+
+// var pool = mysql.createPool({
+//     connectionLimit: connectionLimit,
+//     host: host,
+//     user: user,
+//     password: password,
+//     database: db,
+//     port: '8889'
+// });
+
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
 
-app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({secret:'randpassString'}));
-app.set('port',60005);
+app.set('port',port);
 
 // TODO: Update with appropriate MySQL info
 
