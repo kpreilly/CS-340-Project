@@ -1,0 +1,25 @@
+<h1 class="header"> Maps </h1>
+
+<!-- Display Map entities and attributes -->
+<table id="mapTable">
+<tr>
+    <th>Name</th>
+    <th>Game Mode</th>
+    <th>DLC</th>
+    <th>Max Players</th>
+    <th>Enviornment</th>
+    <th>Combat Type</th>
+</tr>
+
+<!-- Pending on deciding to use handlebars -->
+{{#if results}}
+{{#each results}}
+<tr>
+    <td>{{this.name}}</td>
+    <td>{{this.gameMode}}</td>
+    <td>{{this.dlc}}</td>
+    <td>{{this.maxPlayers}}</td>
+    <td>{{this.enviornment}}</td>
+    <td>{{this.combatType}}</td>
+</tr>
+</table>

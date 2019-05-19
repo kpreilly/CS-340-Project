@@ -1,0 +1,17 @@
+<!-- Display Perk Entities and attributes -->
+<table id="perkTable">
+    <tr>
+        <th>Name</th>
+        <th>Duration</th>
+        <th>Effect</th>
+    </tr>
+
+    <!-- Pending on deciding to use handlebars -->
+    {{#if results}}
+    {{#each results}}
+    <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.duration}}</td>
+        <td>{{this.effect}}</td>
+    </tr>
+</table>

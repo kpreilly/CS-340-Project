@@ -1,0 +1,67 @@
+<h1 class="header">COD Database</h1>
+
+<!-- Display Player entities and attributes-->
+<table id="playerTable">
+    <tr>
+        <th>Gamertag</th>
+        <th>Weapon</th>
+        <th>Specialist</th>
+        <th>Kill Count</th>
+        <th>Death Count</th>
+        <th>Wins</th>
+        <th>Losses</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+    <!-- Pending on deciding to use Handlebars-->
+    {{#if results}}
+    {{#each results}}
+    <tr>
+        <td>{{this.gamertag}}</td>
+        <td>{{this.weapon}}</td>
+        <td>{{this.specialist}}</td>
+        <td>{{this.killCount}}</td>
+        <td>{{this.deathCount}}</td>
+        <td>{{this.wins}}</td>
+        <td>{{this.losses}}</td>
+        <td><!--<a href="/updatePlayer?id={{this.id}}"> -->
+            <a href="updatePlayer.html">
+            <input type="button" value="Update Player"></a></td>
+        <td>
+            <input type="button" name="delete" value="Delete Player"> <!--JS: onclick="deletePlayer({{this.id}})"> -->
+            <input type="hidden" id="delete{{this.id}}">
+        </td>
+    </tr>
+    {{/each}}
+    {{/if}}
+</table>
+
+<!-- Add a Player -->
+<h2>Add a Player!</h2>
+
+<!-- Add player form -->
+<section>
+    <form id="addPlayer">
+        <fieldset>
+            <legend> Add Player </legend>
+            <!-- Gamertag -->
+            <label for="gamertag">Gamertag:
+                <input type="text" name="gamertag" id="gamertag">
+            </label>
+            <br>
+
+            <!-- Weapon -->
+            <label for="weapon">Weapon:</label>
+            <br>
+
+            <!-- Speacialist -->
+            <label for="specialist">Specialist:</label>
+            <br>
+
+            <!-- Submit button -->
+            <input type="submit" name="Add Player" value="Add Player" id="addButton">
+            <br>
+        </fieldset>
+    </form>
+</section>

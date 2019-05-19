@@ -1,0 +1,23 @@
+<h1 class="header"> Weapons </h1>
+
+<!-- Display Weapon Entities and attributes -->
+<table id="weaponTable">
+    <tr>
+        <th>Name</th>
+        <th>Damage</th>
+        <th>Range</th>
+        <th>Rate of Fire</th>
+        <th>Ammo Capacity</th>
+    </tr>
+
+    <!-- Pending on deciding to use handlebars -->
+    {{#if results}}
+    {{#each results}}
+    <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.damage}}</td>
+        <td>{{this.range}}</td>
+        <td>{{this.rateOfFire}}</td>
+        <td>{{this.ammo}}</td>
+    </tr>
+</table>
