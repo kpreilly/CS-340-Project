@@ -16,25 +16,29 @@ app.set('port',60005);
 
 // TODO: Update with appropriate MySQL info
 
-app.get('/',function(req,res)) {
+app.get('/',function(req,res) {
     res.render('index',{title:'CS 340 Database Project - COD Database'});
-}
+});
 
-app.get('/map',function(req,res)) {
+app.get('/index',function(req,res) {
+    res.render('index',{title:'CS 340 Database Project - COD Database'});
+});
+
+app.get('/map',function(req,res) {
     res.render('map',{title:'CS 340 Database Project - Map Table'});
-}
+});
 
-app.get('/perk',function(req,res)) {
-    res.render('map',{title:'CS 340 Database Project - Perk Table'});
-}
+app.get('/perk',function(req,res) {
+    res.render('perk',{title:'CS 340 Database Project - Perk Table'});
+});
 
-app.get('/updatePlayer',function(req,res)) {
+app.get('/updatePlayer',function(req,res) {
     res.render('updatePlayer',{title:'CS 340 Project Database - Update Player'});
-}
+});
 
-app.get('/weapon',function(req,res)) {
-    res.render('updatePlayer',{title:'CS 340 Database Project - Weapon Table'});
-}
+app.get('/weapon',function(req,res) {
+    res.render('weapon',{title:'CS 340 Database Project - Weapon Table'});
+});
 
 /* Error Processing */
 
