@@ -8,12 +8,12 @@
 
     <!-- Pending on deciding to use handlebars -->
     {{#if results}}
-    {{#foreach results}}
+    {{#each results}}
     <tr>
         <td>{{this.name}}</td>
         <td>{{this.duration}}</td>
         <td>{{this.effect}}</td>
     </tr>
-    {{/foreach}}
+    {{/each}}
     {{/if}}
 </table>

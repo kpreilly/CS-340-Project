@@ -13,15 +13,15 @@
 
 <!-- Pending on deciding to use handlebars -->
 {{#if results}}
-{{#foreach results}}
+{{#each results}}
 <tr>
     <td>{{this.name}}</td>
     <td>{{this.gameMode}}</td>
     <td>{{this.dlc}}</td>
     <td>{{this.maxPlayers}}</td>
-    <td>{{this.enviornment}}</td>
+    <td>{{this.environment}}</td>
     <td>{{this.combatType}}</td>
 </tr>
-{{/foreach}}
+{{/each}}
 {{/if}}
 </table>
