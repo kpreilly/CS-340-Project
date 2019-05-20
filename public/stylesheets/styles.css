@@ -2,6 +2,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    background-color: rgb(255, 243, 234);
 }
 
 .navBar {
@@ -9,7 +11,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(56, 56, 56);
 }
 
 .navEle {
@@ -25,5 +27,23 @@ body {
 }
 
 .navEle > a:hover {
-    background-color: #111;
+    background-color: rgb(255, 115, 0);
+    color: rgb(56, 56, 56);
+}
+
+.bodyDiv {
+    padding: 0px 20px;
+    display: grid;
+    grid-template-columns: repeat(10,1fr);
+    grid-template-rows: 1fr auto;
+    grid-row-gap: 1em;
+}
+
+/* Index styles */
+.addPlayer, .playerTable {
+    grid-column: 2/10;
+}
+
+.addPlayer {
+    grid-row: 1/2;
 }
