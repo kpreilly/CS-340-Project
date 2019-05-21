@@ -10,6 +10,21 @@ var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var port = 60001;
 
 // mysql stuff
+//var mysql = require('mysql');
+// var connectionLimit = require('./dbcon').connectionLimit,
+//     host = require('./dbcon').host,
+//     password = require('./dbcon').password,
+//     user = require('./dbcon').user,
+//     db = require('./dbcon').db;
+
+// var pool = mysql.createPool({
+//     connectionLimit: connectionLimit,
+//     host: host,
+//     user: user,
+//     password: password,
+//     database: db,
+//     port: '8889'
+// });
 
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
