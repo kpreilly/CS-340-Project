@@ -10,20 +10,20 @@ var port = 60001;
 
 // mysql stuff
 var mysql = require('mysql');
-// var connectionLimit = require('./dbcon').connectionLimit,
-//     host = require('./dbcon').host,
-//     password = require('./dbcon').password,
-//     user = require('./dbcon').user,
-//     db = require('./dbcon').db;
+var connectionLimit = require("./public/dbcon").connectionLimit,
+    host = require('./public/dbcon').host,
+    password = require('./public/dbcon').password,
+    user = require('./public/dbcon').user,
+    db = require('./public/dbcon').db;
 
-// var pool = mysql.createPool({
-//     connectionLimit: connectionLimit,
-//     host: host,
-//     user: user,
-//     password: password,
-//     database: db,
-//     port: '8889'
-// });
+var pool = mysql.createPool({
+    connectionLimit: connectionLimit,
+    host: host,
+    user: user,
+    password: password,
+    database: db,
+    port: '8889'
+});
 
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
