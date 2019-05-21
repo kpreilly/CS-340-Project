@@ -4,6 +4,7 @@
 <table id="weaponTable">
     <tr>
         <th>Name</th>
+        <th>Type</th>
         <th>Damage</th>
         <th>Range</th>
         <th>Rate of Fire</th>
@@ -12,14 +13,15 @@
 
     <!-- Pending on deciding to use handlebars -->
     {{#if results}}
-    {{#foreach results}}
+    {{#each results}}
     <tr>
         <td>{{this.name}}</td>
+        <td>{{this.type}}</td>
         <td>{{this.damage}}</td>
         <td>{{this.range}}</td>
         <td>{{this.rateOfFire}}</td>
         <td>{{this.ammo}}</td>
     </tr>
-    {{/foreach}}
+    {{/each}}
     {{/if}}
 </table>
