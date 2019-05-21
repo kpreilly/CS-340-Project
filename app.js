@@ -3,31 +3,13 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
-//var session = require('express-session');
-//var path = require('path');
-//app.use(express.static(path.join(__dirname,'public')));
+// var session = require('express-session');
+// var path = require('path');
+// app.use(express.static(path.join(__dirname,'public')));
 
 var port = 60001;
 
 // mysql stuff
-<<<<<<< HEAD
-// var mysql = require('mysql');
-// var connectionLimit = require("./public/dbcon").connectionLimit,
-//     host = require('./public/dbcon').host,
-//     password = require('./public/dbcon').password,
-//     user = require('./public/dbcon').user,
-//     db = require('./public/dbcon').db;
-
-// var pool = mysql.createPool({
-//     connectionLimit: connectionLimit,
-//     host: host,
-//     user: user,
-//     password: password,
-//     database: db,
-//     port: '8889'
-// });
-=======
->>>>>>> 9639c0dbf57ddbdd2bfa2b32f4dc9eeb69bbbb62
 
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
