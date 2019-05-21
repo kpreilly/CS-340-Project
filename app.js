@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 // var session = require('express-session');
-// var path = require('path');
-// app.use(express.static(path.join(__dirname,'public')));
+var path = require('path');
+app.use(express.static(path.join(__dirname,'public')));
 
 var port = 60001;
 
