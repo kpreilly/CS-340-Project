@@ -69,6 +69,28 @@ app.get('/index',function(req,res, next) {
     
 });
 
+//Insert New Player
+// Test query
+// INSERT INTO Players(Gamertag, Weapon, Specialist, Map) 
+//VALUES('Frankie709',(SELECT id FROM Weapons WHERE Name = 'ICR-7'), (SELECT id FROM Specialists WHERE Name = 'Battery'), (SELECT id FROM Maps WHERE Name = 'Arsenal'));
+app.get('/insert', function(req, res, next){
+    var context = {};
+    mysql.pool.query("INSERT INTO Players (Gamertag, Weapon, Specialist, Map) VALUES(?,(SELECT id FROM Weapons WHERE Name = ?), (SELECT id FROM Specialists WHERE Name = ?), (SELECT id FROM Maps WHERE Name = ?))",
+    [req.query.gamertag,
+    req.query.weapon,
+    req.query.specialist,
+    req.query.map],
+    function(err, result){
+        if(err){
+            next(err);
+            return;
+        }
+        context.insert=result.insertId;
+        res.send(JSON.stringify(context));
+    });
+});
+
+
 app.get('/map',function(req,res) {
     var context = {};
     mysql.pool.query('SELECT * FROM Maps', function(err, rows, fields){
