@@ -1,157 +1,5 @@
-
 <h1 class="header">COD Database</h1>
-
-<!-- Display Player entities and attributes-->
-<table id="playerTable">
-    <tr>
-        <th>Gamertag</th>
-        <th>Weapon</th>
-        <th>Specialist</th>
-        <th>Kill Count</th>
-        <th>Death Count</th>
-        <th>Wins</th>
-        <th>Losses</th>
-        <th>Update</th>
-        <th>Delete</th>
-    </tr>
-
-    
-    {{#if results}}
-    {{#each results}}
-    <tr>
-        <td>{{this.gamertag}}</td>
-        <td>{{this.weapon}}</td>
-        <td>{{this.specialist}}</td>
-        <td>{{this.killCount}}</td>
-        <td>{{this.deathCount}}</td>
-        <td>{{this.wins}}</td>
-        <td>{{this.losses}}</td>
-        <td><!--<a href="/updatePlayer?id={{this.id}}"> -->
-            <a href="updatePlayer.html">
-            <input type="button" value="Update Player"></a></td>
-        <td>
-            <input type="button" name="delete" value="Delete Player"> <!--JS: onclick="deletePlayer({{this.id}})"> -->
-            <input type="hidden" id="delete{{this.id}}">
-        </td>
-    </tr>
-    {{/each}}
-    {{/if}}
-</table>
-
-<!-- Add a Player -->
-<h2>Add a Player!</h2>
-
-<!-- Add player form -->
-<section>
-        <form id="addPlayer">
-            <fieldset>
-                <legend> Add Player </legend>
-                <!-- Gamertag -->
-                <label for="gamertag">Gamertag:
-                    <input type="text" name="gamertag" id="gamertag">
-                </label>
-                <br>
-
-                <!-- Weapon -->
-                <label for="weapon">Weapon:</label>
-                    <select name="weapon">
-                        <option value="ICR-7">ICR-7</option>
-                        <option value="KN-57">KN-57</option>
-                        <option value="Rampart 17">Rampart 17</option>
-                        <option value="Vapr-XKG">Vapr-XKG</option>
-                        <option value="Maddox RFB">Maddox RFB</option>
-                        <option value="Swat RFT">Swat RFT</option>
-                        <option value="Hades">Hades</option>
-                        <option value="Titan">Titan</option>
-                        <option value="VKM 750">VKM 750</option>
-                        <option value="MX9">MX9</option>
-                        <option value="GKS">GKS</option>
-                        <option value="Spitfire">Spitfire</option>
-                        <option value="Cordite">Cordite</option>
-                        <option value="Saug 9mm">Saug 9mm</option>
-                        <option value="Daemon 3XB">Daemon 3XB</option>
-                        <option value="Auger DMR">Auger DMR</option>
-                        <option value="ABR 223">ABR 223</option>
-                        <option value="Swordfish">Swordfish</option>
-                        <option value="Paladin HB50">Paladin HB50</option>
-                        <option value="Outlaw">Outlaw</option>
-                        <option value="SDM">SDM</option>
-                        <option value="Koshka">Koshka</option>
-                        <option value="Mog 12">Mog 12</option>
-                        <option value="SG 12">SG 12</option>
-                        <option value="Strife">Strife</option>
-                        <option value="RK 7 Garrison">RK 7 Garrison</option>
-                        <option value="Mozu">Mozu</option>
-                        <option value="Hellion Salvo">Hellion Salvo</option>
-                        <option value="Combat Knife">Combat Knife</option>
-                        <option value="War Machine">War Machine</option>
-                        <option value="TAK-5">TAK-5</option>
-                    </select>
-                <br>
-
-                <!-- Speacialist -->
-                <label for="specialist">Specialist:</label>
-                    <select name="specialist">
-                        <option value="Battery">Battery</option>
-                        <option value="Crash">Crash</option>
-                        <option value="Firebreak">Firebreak</option>
-                        <option value="Nomad">Nomad</option>
-                        <option value="Prophet">Prophet</option>
-                        <option value="Ruin">Ruin</option>
-                        <option value="Seraph">Seraph</option>
-                        <option value="Ajax">Ajax</option>
-                        <option value="Crash">Crash</option>
-                        <option value="Recon">Recon</option>
-                        <option value="Torque">Torque</option>
-                    </select>
-                <br>
-
-                <!-- Map -->
-                <label for="map">Map:</label>
-                    <select name="map">
-                        <option value="Arsenal">Arsenal</option>
-                        <option value="Contraband">Contraband</option>
-                        <option value="Firing Range">Firing Range</option>
-                        <option value="Freqency">Freqency</option>
-                        <option value="Blackout">Blackout</option>
-                        <option value="Nuketown">Nuketown</option>
-                        <option value="Firing Rang Night">Firing Rang Night</option>
-                        <option value="Madagascar">Madagascar</option>
-                    </select>
-                <br>
-
-                <!-- Submit button -->
-                <input type="submit" name="Add Player" value="Add Player" id="addButton">
-                <br>
-            </fieldset>
-        </form>
-    </section>
-
-   <script src="script.js"></script>
-    
-=======
-<!-- Add player form -->
-<section class="addPlayer">
-    <h2>Add a Player!</h2>
-    <form id="addPlayer">
-        <fieldset>
-            <legend>Add Player</legend>
-            <!-- Gamertag -->
-            <input class="playerInput" type="text" name="gamertag" id="gamertag" placeholder="Gamertag">
-            <br>
-            <!-- Weapon -->
-            <input class="playerInput" type="text" name="weapon" id="weapon" placeholder="Weapon">
-            <br>
-            <!-- Speacialist -->
-            <input class="playerInput" type="text" name="specialist" id="specialist" placeholder="Specialist">
-            <br>
-
-            <!-- Submit button -->
-            <input type="submit" name="Add Player" value="Add Player" id="addButton">
-            <br>
-        </fieldset>
-    </form>
-</section>
+<br>
 
 <!-- Display Player entities and attributes-->
 <div class="playerTable">
@@ -169,7 +17,7 @@
             <th>Delete</th>
         </tr>
 
-        <!-- Pending on deciding to use Handlebars-->
+
         {{#if results}}
         {{#each results}}
         <tr>
@@ -180,11 +28,13 @@
             <td>{{this.deathCount}}</td>
             <td>{{this.wins}}</td>
             <td>{{this.losses}}</td>
-            <td><!--<a href="/updatePlayer?id={{this.id}}"> -->
-                <a href="updatePlayer.html">
-                <input type="button" value="Update Player"></a></td>
             <td>
-                <input type="button" name="delete" value="Delete Player"> <!--JS: onclick="deletePlayer({{this.id}})"> -->
+                <!--<a href="/updatePlayer?id={{this.id}}"> -->
+                <a href="updatePlayer.html">
+                    <input type="button" value="Update Player"></a></td>
+            <td>
+                <input type="button" name="delete" value="Delete Player">
+                <!--JS: onclick="deletePlayer({{this.id}})"> -->
                 <input type="hidden" id="delete{{this.id}}">
             </td>
         </tr>
@@ -192,4 +42,93 @@
         {{/if}}
     </table>
 </div>
+<br>
+<!-- Add a Player -->
+<!-- Add player form -->
+<section class="addPlayer">
+    <h2>Add a Player!</h2>
+    <form id="addPlayer">
+        <fieldset>
+            <legend> Add Player </legend>
+            <!-- Gamertag -->
+            <label for="gamertag">Gamertag:
+                <input type="text" name="gamertag" id="gamertag">
+            </label>
+            <br>
 
+            <!-- Weapon -->
+            <label for="weapon">Weapon:</label>
+            <select name="weapon">
+                <option value="ICR-7">ICR-7</option>
+                <option value="KN-57">KN-57</option>
+                <option value="Rampart 17">Rampart 17</option>
+                <option value="Vapr-XKG">Vapr-XKG</option>
+                <option value="Maddox RFB">Maddox RFB</option>
+                <option value="Swat RFT">Swat RFT</option>
+                <option value="Hades">Hades</option>
+                <option value="Titan">Titan</option>
+                <option value="VKM 750">VKM 750</option>
+                <option value="MX9">MX9</option>
+                <option value="GKS">GKS</option>
+                <option value="Spitfire">Spitfire</option>
+                <option value="Cordite">Cordite</option>
+                <option value="Saug 9mm">Saug 9mm</option>
+                <option value="Daemon 3XB">Daemon 3XB</option>
+                <option value="Auger DMR">Auger DMR</option>
+                <option value="ABR 223">ABR 223</option>
+                <option value="Swordfish">Swordfish</option>
+                <option value="Paladin HB50">Paladin HB50</option>
+                <option value="Outlaw">Outlaw</option>
+                <option value="SDM">SDM</option>
+                <option value="Koshka">Koshka</option>
+                <option value="Mog 12">Mog 12</option>
+                <option value="SG 12">SG 12</option>
+                <option value="Strife">Strife</option>
+                <option value="RK 7 Garrison">RK 7 Garrison</option>
+                <option value="Mozu">Mozu</option>
+                <option value="Hellion Salvo">Hellion Salvo</option>
+                <option value="Combat Knife">Combat Knife</option>
+                <option value="War Machine">War Machine</option>
+                <option value="TAK-5">TAK-5</option>
+            </select>
+            <br>
+
+            <!-- Speacialist -->
+            <label for="specialist">Specialist:</label>
+            <select name="specialist">
+                <option value="Battery">Battery</option>
+                <option value="Crash">Crash</option>
+                <option value="Firebreak">Firebreak</option>
+                <option value="Nomad">Nomad</option>
+                <option value="Prophet">Prophet</option>
+                <option value="Ruin">Ruin</option>
+                <option value="Seraph">Seraph</option>
+                <option value="Ajax">Ajax</option>
+                <option value="Crash">Crash</option>
+                <option value="Recon">Recon</option>
+                <option value="Torque">Torque</option>
+            </select>
+            <br>
+
+            <!-- Map -->
+            <label for="map">Map:</label>
+            <select name="map">
+                <option value="Arsenal">Arsenal</option>
+                <option value="Contraband">Contraband</option>
+                <option value="Firing Range">Firing Range</option>
+                <option value="Freqency">Freqency</option>
+                <option value="Blackout">Blackout</option>
+                <option value="Nuketown">Nuketown</option>
+                <option value="Firing Rang Night">Firing Rang Night</option>
+                <option value="Madagascar">Madagascar</option>
+            </select>
+            <br>
+
+            <!-- Submit button -->
+            <input type="submit" name="Add Player" value="Add Player" id="addButton">
+            <br>
+        </fieldset>
+    </form>
+</section>
+
+<script src="script.js"></script>
