@@ -1,4 +1,4 @@
-import { runInNewContext } from "vm";
+//import { runInNewContext } from "vm";
 
 //Add Player
 document.addEventListener("DOMContentLoaded", bindAddButton);
@@ -46,7 +46,7 @@ function bindAddButton(){
 
                 //Add specialists to player
                 var specialists = document.createElement("td");
-                specialists.textContent = player.elements.specialists.value;
+                specialists.textContent = player.elements.specialist.value;
                 newRow.appendChild(specialists);
 
                 //Add map to player
