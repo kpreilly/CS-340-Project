@@ -90,3 +90,40 @@ function bindAddButton(){
         event.preventDefault();
     })
 }
+
+//Delete Functionality
+
+function deleteData(id){
+    //Player to be deleted
+    var deletePlayer = "delete" + id;
+    var table = document.getElementById("playerTable");
+    var nRows = table.rows.length;
+
+    //Remove Player from table
+    for(var x = 1; x < nRows; x++){
+        //Start at rows[1] to avoid header row
+        var row = table.rows[x];
+        var search = row.getElementsByTagName("td");
+        var erase = search[search.length-1];
+        if(erase.children[1].id === deletePlayer){
+            table.deleteRow(x);
+            break;
+        }
+    }
+
+    //Send Request to database to delete player
+    var req = new XMLHttpRequest();
+
+    req.open("GET", "/delete?id=" + id, true);
+    req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    req.addEventListener('load', function () {
+        if (req.status >= 200 && req.status < 400) {
+            console.log("Successful Deletion.");
+        } else {
+            console.log("Error in network request: " + req.statusText);
+        }
+    })
+
+    req.send("/delete?id="+id);
+
+}

@@ -91,6 +91,15 @@ app.get('/insert', function(req, res, next){
     });
 });
 
+//Delete Player
+app.get('/delete', function (req, res, next) {
+    mysql.pool.query("DELETE FROM Players WHERE id=?", [req.query.id], function (err, result) {
+        if (err) {
+            next(err);
+            return;
+        }
+    });
+});
 
 app.get('/map',function(req,res) {
     var context = {};
