@@ -205,6 +205,7 @@ app.get('/updatePlayer', function (req, res, next) {
         });
 });
 
+/*
 app.get('/updateDone', function (req, res, next) {
     var context = {};
     mysql.pool.query("SELECT * FROM Players WHERE id=?", [req.query.id], function (err, result) {
@@ -216,8 +217,7 @@ app.get('/updateDone', function (req, res, next) {
             var curVals = result[0];
 
             mysql.pool.query("UPDATE Players SET Gamertag=?, Weapon=?, Specialist=?, Kill_Count=?, Death_Count=?, Wins=?, Losses=?, Map=? WHERE id=? ",
-                /*[req.query.gamertag || curVals.gamertag, req.query.weapon || curVals.weapon, req.query.specialist || curVals.specialist, req.query.killCount || curVals.killCount, req.query.deathCount || curVals.deathCount, req.query.wins || curVals.wins, req.query.losses || curVals.losses, req.query.map || curVals.map, req.query.id],*/
-                [req.query.gamertag || curVals.gamertag, req.query.weapon || "SELECT id FROM Weapons WHERE Name = curVals.weapon", req.query.specialist || "SELECT id FROM Specialists WHERE Name = curVals.specialist", req.query.killCount || curVals.killCount, req.query.deathCount || curVals.deathCount, req.query.wins || curVals.wins, req.query.losses /*|| curVals.losses, req.query.map || "SELECT Id FROM Maps WHERE Name = curVals.map"*/, req.query.id],
+                [req.query.gamertag || curVals.gamertag, req.query.weapon || curVals.weapon, req.query.specialist || curVals.specialist, req.query.killCount || curVals.killCount, req.query.deathCount || curVals.deathCount, req.query.wins || curVals.wins, req.query.losses || curVals.losses, req.query.map || curVals.map, req.query.id],
                 function (err, result) {
                     if (err) {
                         next(err);
@@ -254,6 +254,54 @@ app.get('/updateDone', function (req, res, next) {
         }
     });
 
+});
+*/
+/*Second Update Try*/
+
+app.get('/updateDone', function (req, res, next) {
+    var context = {};
+    mysql.pool.query("UPDATE Players SET Gamertag=?, Weapon = (SELECT id FROM Weapons WHERE Name = ?), Specialist=(SELECT id FROM Specialists WHERE Name = ?), Map=(SELECT id FROM Maps WHERE Name = ?), Kill_Count =?, Death_Count=?, Wins=?, Losses=? WHERE id=?",
+        [req.query.gamertag,
+        req.query.weapon,
+        req.query.specialist,
+        req.query.map,
+        req.query.killCount,
+        req.query.deathCount,
+        req.query.wins,
+        req.query.losses,
+        req.query.id],
+        function (err, result) {
+            if (err) {
+                next(err);
+                return;
+            }
+
+            mysql.pool.query("SELECT * FROM Players", function (err, rows, fields) {
+                if (err) {
+                    next(err);
+                    return;
+                }
+                var data = [];
+                for (var x in rows) {
+                    var add = {
+                        'id': rows[x].id,
+                        'gamertag': rows[x].Gamertag,
+                        'weapon': rows[x].Weapon,
+                        'specialist': rows[x].Specialist,
+                        'killCount': rows[x].Kill_Count,
+                        'deathCount': rows[x].Death_Count,
+                        'wins': rows[x].Wins,
+                        'losses': rows[x].Losses,
+                        'map': rows[x].Map
+                    };
+
+                    data.push(add);
+                }
+
+                context.results = data;
+                res.render('index', context);
+            });
+        });
 });
 
 
