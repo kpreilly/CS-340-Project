@@ -3,47 +3,66 @@
 
 <!-- Update Player Form -->
 <section>
-    <form action="index" id="updatePlayer">
+    <form action="/player" id="updatePlayer" method="get">
         <fieldset>
             <label for="gamertag">Gamertag:<br>
-                <input type="text" name="gamertag" id="uGamertag" value="{{results.gamertag}}">
+                <input type="text" name="gamertag" id="uGamertag" value="{{player.Gamertag}}">
             </label>
             <br>
 
-            <label for="Weapon">Reps:<br>
-                <input type="text" name="weapon" id="uWeapon" value="{{results.weapon}}">
-            </label>
+            <label for="weapon">Weapon:<br>
+                <select name="weapon" id="weapon-selector">
+                    {{#each weapons}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                </label>
             <br>
 
             <label for="specialist">Specialist:<br>
-                <input type="text" name="specialist" id="uSpecialist" value="{{results.specialist}}">
-            </label>
+                <select name="specialist" id="specialist-selector">
+                    {{#each specialists}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                </label>
+            <br>
+
+            <label for="map">Map:<br>
+                <select name="map" id="map-selector">
+                    {{#each maps}}
+                    <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+                </label>
             <br>
 
             <label for="killCount">Kill Count:<br>
-                <input type="text" name="killCount" id="uKillCount" value="{{results.killCount}}">
+                <input type="number" name="killCount" id="uKillCount" value="{{player.Kill_Count}}">
             </label>
             <br>
 
             <label for="deathCount">Death Count:<br>
-                <input type="text" name="deathCount" id="uDeathCount" value="{{results.deathCount}}">
+                <input type="number" name="deathCount" id="uDeathCount" value="{{player.Death_Count}}">
             </label>
             <br>
 
             <label for="wins">Wins:<br>
-                <input type="text" name="wins" id="uWins" value="{{results.wins}}">
+                <input type="number" name="wins" id="uWins" value="{{player.Wins}}">
             </label>
             <br>
 
             <label for="losses">Losses:<br>
-                <input type="text" name="losses" id="uLosses" value="{{results.losses}}">
+                <input type="number" name="losses" id="uLosses" value="{{player.Losses}}">
             </label>
             <br>
 
 
-            <input type="hidden" name="id" value={{results.id}}>
-            <input type="submit" name="Update Player" value="Update Player" id="updatePlayerButton">
+            <button onclick="updatePlayer({{player.id}})">Update</button>
         </fieldset>
 
     </form>
 </section>
+<script defer>selectMap({{player.Map}});</script>
+<script defer>selectSpecialist({{player.Specialist}});</script>
+<script defer>selectWeapon({{player.Weapon}});</script>

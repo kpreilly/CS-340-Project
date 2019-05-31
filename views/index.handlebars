@@ -29,9 +29,10 @@
             <td>{{this.wins}}</td>
             <td>{{this.losses}}</td>
             <td>
-                <!--<a href="/updatePlayer?id={{this.id}}"> -->
+                <!--<a href="/updatePlayer?id={{this.id}}"> 
                 <a href="updatePlayer.html">
-                    <input type="button" value="Update Player"></a></td>
+                    <input type="button" value="Update Player"></a></td>-->
+                <a href="/player/{{id}}">Update</a>
             <td>
                 <input type="button" name="delete" value="Delete Player" onclick="deleteData({{this.id}})">
                 <input type="hidden" id="delete{{this.id}}">

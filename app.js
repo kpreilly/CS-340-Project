@@ -149,9 +149,11 @@ app.get('/perk',function(req,res) {
     });  
 });
 
+/*
 app.get('/updatePlayer',function(req,res) {
     res.render('updatePlayer',{title:'CS 340 Project Database - Update Player'});
 });
+*/
 
 app.get('/weapon',function(req,res) {
     var context = {};
@@ -177,6 +179,91 @@ app.get('/weapon',function(req,res) {
         res.render('weapon',context);
     }); 
 });
+
+/*Testting out Update Data */
+function getPlayer(res, mysql, context, id, complete){
+    var sql = "SELECT id, Gamertag, Specialist, Kill_Count, Death_Count, Wins, Losses, Map FROM Players WHERE id = ?";
+    var inserts = [id];
+    mysql.pool.query(sql,inserts, function(error, results, fields){
+        if(error){
+            res.write(JSON.stringify(error));
+            res.end();
+        }
+        context.player = results[0];
+        complete();
+    });
+}
+
+function getWeapons(res, mysql, context, complete){
+    mysql.pool.query("SELECT id, name FROM Weapons", function(error, results, fields){
+        if(error){
+            res.write(JSON.stringify(error));
+            res.end();
+        }
+        context.weapons  = results;
+        complete();
+    });
+}
+
+function getSpecialists(res, mysql, context, complete){
+    mysql.pool.query("SELECT id, name FROM Specialists", function(error, results, fields){
+        if(error){
+            res.write(JSON.stringify(error));
+            res.end();
+        }
+        context.specialists  = results;
+        complete();
+    });
+}
+
+function getMaps(res, mysql, context, complete){
+    mysql.pool.query("SELECT id, name FROM Maps", function(error, results, fields){
+        if(error){
+            res.write(JSON.stringify(error));
+            res.end();
+        }
+        context.maps  = results;
+        complete();
+    });
+}
+
+app.get('/:id', function(req,res){
+    callbackCount = 0;
+    var context = {};
+    context.jsscripts = ["selectMap.js", "selectWeapon.js", "selectSpecialist.js", "updatePlayer.js"];
+    getPlayer(res, mysql, context, req.params.id, complete);
+    getMaps(res, mysql, context, req.params.id, complete);
+    getSpecialists(res, mysql, context, req.params.id, complete);
+    getWeapons(res, mysql, context, req.params.id, complete);
+    function complete(){
+        callbackCount++;
+        if(callbackCount >=4){
+            res.render('updatePlayer', context);
+        }
+    };
+    res.render('updatePlayer', context);
+});
+
+/* The URI that update data is sent to in order to update a person */
+
+app.put('/:id', function(req, res){
+    var mysql = req.app.get('mysql');
+    console.log(req.body)
+    console.log(req.params.id)
+    var sql = "UPDATE Players SET Gamertag=?, Weapon=?, Specialist=?, Map=?, Kill_Count=?, Death_Count=?, Wins=?, Losses=? WHERE id=?";
+    var inserts = [req.body.Gamertag, req.body.Weapon, req.body.Specialist, req.body.Map, req.body.Kill_Count, req.body.Death_Count, req.body.Wins, req.body.Losses, req.params.id];
+    sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+        if(error){
+            console.log(error)
+            res.write(JSON.stringify(error));
+            res.end();
+        }else{
+            res.status(200);
+            res.end();
+        }
+    });
+});
+
 
 /* Error Processing */
 
