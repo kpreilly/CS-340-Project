@@ -9,7 +9,7 @@ var path = require('path');
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.static(path.join(__dirname,'views')));
 
-var port = 60001;
+var port = 60006;
 
 // mysql stuff
 //var mysql = require('mysql');
