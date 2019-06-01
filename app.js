@@ -70,31 +70,31 @@ app.get('/',function(req,res) {
 
 app.get('/index', function (req, res, next) {
     var context = {};
-    mysql.pool.query('SELECT * FROM Players', function (err, rows, fields) {
-        if (err) {
+    mysql.pool.query("SELECT Players.id, Gamertag, Kill_Count, Death_Count, Wins, Losses, Weapons.name as weapon, Specialists.name as specialist, Maps.name as map FROM Players INNER JOIN Weapons ON Players.weapon = Weapons.id INNER JOIN Specialists ON Players.specialist = Specialists.id INNER JOIN Maps ON Players.map = Maps.id", function(err, rows, fields){
+        if(err) {
             next(err);
             return;
         }
         var data = [];
-        for (var x in rows) {
+        for(var x in rows) {
             var add = {
                 'id': rows[x].id,
-                'gamertag': rows[x].Gamertag,
-                'weapon': rows[x].Weapon,
-                'specialist': rows[x].Specialist,
-                'killCount': rows[x].Kill_Count,
-                'deathCount': rows[x].Death_Count,
-                'wins': rows[x].Wins,
-                'losses': rows[x].Losses,
-                'map': rows[x].Map
+                'gamertag':rows[x].Gamertag,
+                'weapon':rows[x].weapon,
+                'specialist':rows[x].specialist,
+                'killCount':rows[x].Kill_Count,
+                'deathCount':rows[x].Death_Count,
+                'wins':rows[x].Wins,
+                'losses':rows[x].Losses,
+                'map':rows[x].map
             };
             data.push(add);
         }
         context.results = data;
-        res.render('index', context);
+        res.render('index',context);
     });
 
-
+    
 });
 
 //Insert New Player
@@ -254,30 +254,28 @@ app.get('/updateDone', function (req, res, next) {
                 return;
             }
 
-            mysql.pool.query("SELECT * FROM Players", function (err, rows, fields) {
-                if (err) {
+            mysql.pool.query("SELECT Players.id, Gamertag, Kill_Count, Death_Count, Wins, Losses, Weapons.name as weapon, Specialists.name as specialist, Maps.name as map FROM Players INNER JOIN Weapons ON Players.weapon = Weapons.id INNER JOIN Specialists ON Players.specialist = Specialists.id INNER JOIN Maps ON Players.map = Maps.id", function(err, rows, fields){
+                if(err) {
                     next(err);
                     return;
                 }
                 var data = [];
-                for (var x in rows) {
+                for(var x in rows) {
                     var add = {
                         'id': rows[x].id,
-                        'gamertag': rows[x].Gamertag,
-                        'weapon': rows[x].Weapon,
-                        'specialist': rows[x].Specialist,
-                        'killCount': rows[x].Kill_Count,
-                        'deathCount': rows[x].Death_Count,
-                        'wins': rows[x].Wins,
-                        'losses': rows[x].Losses,
-                        'map': rows[x].Map
+                        'gamertag':rows[x].Gamertag,
+                        'weapon':rows[x].weapon,
+                        'specialist':rows[x].specialist,
+                        'killCount':rows[x].Kill_Count,
+                        'deathCount':rows[x].Death_Count,
+                        'wins':rows[x].Wins,
+                        'losses':rows[x].Losses,
+                        'map':rows[x].map
                     };
-
                     data.push(add);
                 }
-
                 context.results = data;
-                res.render('index', context);
+                res.render('index',context);
             });
         });
 });
