@@ -54,6 +54,28 @@ function bindAddButton(){
                 map.textContent = player.elements.map.value;
                 newRow.appendChild(map);
 
+                //Add Kill Count to player
+                var kill = document.createElement("td");
+                kill.textContent = 0;
+                newRow.appendChild(kill);
+
+                //Add Death Count to player
+                var death = document.createElement("td");
+                death.textContent = 0;
+                newRow.appendChild(death);
+
+                //Add Win Count to player
+                var win = document.createElement("td");
+                win.textContent = 0;
+                newRow.appendChild(win);
+
+                //Add Lose Count to player
+                var lose = document.createElement("td");
+                lose.textContent = 0;
+                newRow.appendChild(lose);
+
+
+
                 //Add Update button to the Row, Set links to handlers to update exercise
                 var update = document.createElement("td");
                 var updateLink = document.createElement("a");
