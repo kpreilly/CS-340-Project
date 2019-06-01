@@ -38,9 +38,35 @@ app.set('port', port);
 
 // TODO: Update with appropriate MySQL info
 
-app.get('/', function (req, res) {
-    res.render('index', { title: 'CS 340 Database Project - COD Database' });
+app.get('/',function(req,res) {
+    var context = {};
+    mysql.pool.query("SELECT Players.id, Gamertag, Kill_Count, Death_Count, Wins, Losses, Weapons.name as weapon, Specialists.name as specialist, Maps.name as map FROM Players INNER JOIN Weapons ON Players.weapon = Weapons.id INNER JOIN Specialists ON Players.specialist = Specialists.id INNER JOIN Maps ON Players.map = Maps.id", function(err, rows, fields){
+        if(err) {
+            next(err);
+            return;
+        }
+        var data = [];
+        for(var x in rows) {
+            var add = {
+                'id': rows[x].id,
+                'gamertag':rows[x].Gamertag,
+                'weapon':rows[x].weapon,
+                'specialist':rows[x].specialist,
+                'killCount':rows[x].Kill_Count,
+                'deathCount':rows[x].Death_Count,
+                'wins':rows[x].Wins,
+                'losses':rows[x].Losses,
+                'map':rows[x].map
+            };
+            data.push(add);
+        }
+        context.results = data;
+        res.render('index',context);
+    });
+
+    
 });
+    
 
 app.get('/index', function (req, res, next) {
     var context = {};
@@ -145,9 +171,10 @@ app.get('/perk', function (req, res) {
             data.push(add);
         }
         context.results = data;
-        res.render('perk', context);
-    });
+        res.render('perk',context);
+    });  
 });
+
 
 app.get('/weapon', function (req, res) {
     var context = {};
@@ -305,6 +332,86 @@ app.get('/updateDone', function (req, res, next) {
         });
 });
 
+
+/*Update Player Functionality */
+
+app.get('/updatePlayer', function (req, res, next) {
+    var context = {};
+    mysql.pool.query('SELECT * FROM Players WHERE id=?',
+        [req.query.id],
+        function (err, rows, fields) {
+            if (err) {
+                next(err);
+                return;
+            }
+            var data = [];
+
+            for (var x in rows) {
+                var add = {
+                    'id': rows[x].id,
+                    'gamertag': rows[x].Gamertag,
+                    'weapon': rows[x].Weapon,
+                    'specialist': rows[x].Specialist,
+                    'killCount': rows[x].Kill_Count,
+                    'deathCount': rows[x].Death_Count,
+                    'wins': rows[x].Wins,
+                    'losses': rows[x].Losses,
+                    'map': rows[x].Map
+                };
+
+                data.push(add);
+            }
+
+            context.results = data[0];
+            res.render('updatePlayer', context);
+        });
+});
+
+app.get('/updateDone', function (req, res, next) {
+    var context = {};
+    mysql.pool.query("UPDATE Players SET Gamertag=?, Weapon = (SELECT id FROM Weapons WHERE Name = ?), Specialist=(SELECT id FROM Specialists WHERE Name = ?), Map=(SELECT id FROM Maps WHERE Name = ?), Kill_Count =?, Death_Count=?, Wins=?, Losses=? WHERE id=?",
+        [req.query.gamertag,
+        req.query.weapon,
+        req.query.specialist,
+        req.query.map,
+        req.query.killCount,
+        req.query.deathCount,
+        req.query.wins,
+        req.query.losses,
+        req.query.id],
+        function (err, result) {
+            if (err) {
+                next(err);
+                return;
+            }
+
+            mysql.pool.query("SELECT * FROM Players", function (err, rows, fields) {
+                if (err) {
+                    next(err);
+                    return;
+                }
+                var data = [];
+                for (var x in rows) {
+                    var add = {
+                        'id': rows[x].id,
+                        'gamertag': rows[x].Gamertag,
+                        'weapon': rows[x].Weapon,
+                        'specialist': rows[x].Specialist,
+                        'killCount': rows[x].Kill_Count,
+                        'deathCount': rows[x].Death_Count,
+                        'wins': rows[x].Wins,
+                        'losses': rows[x].Losses,
+                        'map': rows[x].Map
+                    };
+
+                    data.push(add);
+                }
+
+                context.results = data;
+                res.render('index', context);
+            });
+        });
+});
 
 /* Error Processing */
 
