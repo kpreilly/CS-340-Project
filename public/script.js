@@ -79,7 +79,7 @@ function bindAddButton(){
                 //Add Update button to the Row, Set links to handlers to update exercise
                 var update = document.createElement("td");
                 var updateLink = document.createElement("a");
-                updateLink.setAttribute("href","/updateTable?id="+pId);
+                updateLink.setAttribute("href","/updatePlayer?id="+pId);
                 var updateButton = document.createElement("input");
                 updateButton.setAttribute("value", "Update Player");
                 updateButton.setAttribute("type", "button");
